@@ -48,3 +48,4 @@
 /home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/obj/Debug/net8.0/Cardapio.pdb
 /home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/obj/Debug/net8.0/Cardapio.genruntimeconfig.cache
 /home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/obj/Debug/net8.0/ref/Cardapio.dll
+/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/obj/Debug/net8.0/Cardapio.sourcelink.json
