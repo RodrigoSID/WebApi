@@ -1,0 +1,6 @@
+@Cardapio_HostAddress = http://localhost:5121/swagger
+
+GET {{Cardapio_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
