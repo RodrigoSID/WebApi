@@ -4,22 +4,24 @@ namespace MeuProjetoApi.Controllers
     using Microsoft.AspNetCore.Mvc;
     using MeuProjetoApi.Models;
     using MeuProjetoApi.Services;
+    using MeuProjetoApi.ReadDto;
+    using MeuProjetoApi.UpdateDto;
     using Supabase.Postgrest.Exceptions;
 
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly BancoDados _db;
 
-        public UserController(BancoDados db)
+        public UsersController(BancoDados db)
         {
             _db = db;
         }
 
         //rota Get
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsers()
         {
             try
             {
@@ -34,7 +36,7 @@ namespace MeuProjetoApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<UserResponseDto>> GetUser(int id)
         {
             try
             {
@@ -65,12 +67,12 @@ namespace MeuProjetoApi.Controllers
             }
         }
 
-        [HttpPut("{nomeAntigo}")]
-        public async Task<IActionResult> PutUser(string nomeAntigo, [FromBody] string novoNome)
+        [HttpPut("{chave}")]
+        public async Task<IActionResult> PutUser(int chave, [FromBody] UpdateDto dados)
         {
             try
             {
-                await _db.Atualizar(nomeAntigo, novoNome);
+                await _db.Atualizar(chave, dados.Onde, dados.NovoValor);
                 return NoContent();
             }
             catch (Exception ex)
@@ -94,5 +96,4 @@ namespace MeuProjetoApi.Controllers
         }
 
     }
-    
 }

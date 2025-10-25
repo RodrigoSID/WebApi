@@ -1,10 +1,11 @@
 
-using System.Threading.Tasks;
-using Supabase.Postgrest.Attributes;
-using Supabase.Postgrest.Models;
-
 namespace MeuProjetoApi.Services
 {
+    using System.Threading.Tasks;
+    using Supabase.Postgrest.Attributes;
+    using Supabase.Postgrest.Models;
+    using MeuProjetoApi.ReadDto;
+    using System.Linq;
 
 
     public class BancoDados
@@ -16,16 +17,31 @@ namespace MeuProjetoApi.Services
             _supabase = supabaseClient;
         }
 
-        public async Task<List<User>> MostrarTodos()
+        public async Task<List<UserResponseDto>> MostrarTodos()
         {
             var resultado = await _supabase.From<User>().Get();
-            return resultado.Models;
+
+            var listaDeDtos = resultado.Models.Select(user => new UserResponseDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Bio = user.Bio,
+                Telefone = user.Telefone
+            }).ToList();
+            return listaDeDtos;
         }
 
-        public async Task<User> Mostrar(int chave)
+        public async Task<UserResponseDto> Mostrar(int chave)
         {
             var usuario = await _supabase.From<User>().Where(x => x.Id == chave).Single();
-            return usuario;
+            var dto = new UserResponseDto
+            {
+                Id = usuario.Id,
+                Name = usuario.Name,
+                Bio = usuario.Bio,
+                Telefone = usuario.Telefone
+            };
+            return dto;
         }
 
         public async Task Inserir(string nome, string bio, string cell)
@@ -39,9 +55,25 @@ namespace MeuProjetoApi.Services
             await _supabase.From<User>().Insert(novo);
         }
 
-        public async Task Atualizar(string nome, string subistituir)
+        public async Task<List<User>> Atualizar(int chave, int onde, string novoValor)
         {
-            var novo = await _supabase.From<User>().Where(x => x.Name == nome).Set(x => x.Name, subistituir).Update();
+            List<User> saida = null;
+            if (onde == 1)
+            {
+                var resultado = await _supabase.From<User>().Where(x => x.Id == chave).Set(x =>x.Name, novoValor).Update();
+                saida = resultado.Models;
+            }
+            else if (onde == 2)
+            {
+                var resultado = await _supabase.From<User>().Where(x => x.Id == chave).Set(x => x.Bio, novoValor).Update();
+                saida = resultado.Models;
+            }
+            else if (onde == 3)
+            {
+                var resultado = await _supabase.From<User>().Where(x => x.Id == chave).Set(x => x.Telefone, novoValor).Update();
+                saida = resultado.Models;
+            }
+            return saida;
         }
 
         public async Task Deletar(int chave)
@@ -49,9 +81,7 @@ namespace MeuProjetoApi.Services
             await _supabase.From<User>().Where(x => x.Id == chave).Delete();
         }
 
-
     }
-
 
     [Table("user")]
     public class User : BaseModel

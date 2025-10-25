@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/Cardapio.csproj": {}
+    "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Api/Cardapio.csproj": {}
   },
   "projects": {
-    "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/Cardapio.csproj": {
+    "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Api/Cardapio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/Cardapio.csproj",
+        "projectUniqueName": "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Api/Cardapio.csproj",
         "projectName": "Cardapio",
-        "projectPath": "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/Cardapio.csproj",
+        "projectPath": "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Api/Cardapio.csproj",
         "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Cardapio/obj/",
+        "outputPath": "/home/rodrigo/Documentos/estudos/estudos estagio incantare/WebApi/Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rodrigo/.nuget/NuGet/NuGet.Config"

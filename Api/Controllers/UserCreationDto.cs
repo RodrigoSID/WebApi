@@ -1,4 +1,5 @@
 namespace MeuProjetoApi.Models;
+
 public class UserCreationDto
 {
     public string name { get; set; }
