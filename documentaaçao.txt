@@ -1,0 +1,58 @@
+📄 Documentação da API de Gestão de Usuários (Users API)
+
+1. Visão Geral do Projeto
+
+Esta API RESTful foi desenvolvida em ASP.NET Core e C#, com o objetivo de gerenciar dados de usuários. Ela implementa as operações CRUD (Create, Read, Update, Delete) e utiliza o Supabase como serviço de banco de dados, através de uma camada de serviço (BancoDados.cs).
+Componente	Função
+Tecnologia	ASP.NET Core 8+ (C#)
+Banco de Dados	Supabase (PostgreSQL)
+Padrão	RESTful (CRUD)
+URL Base	https://localhost:[PORTA]/api/Users (substituir [PORTA] pela porta local)
+
+2. Modelos de Dados (DTOs)
+
+A. Objeto de Resposta (UserResponseDto)
+
+Este é o formato de dados retornado por rotas GET. É um DTO ("Data Transfer Object") limpo, sem metadados do Supabase, garantindo a serialização correta em JSON.
+Campo	Tipo	Descrição	Exemplo
+id	int	Identificador único do usuário no banco.	5
+name	string	Nome completo do usuário.	"Maria Silva"
+bio	string	Breve biografia ou descrição.	"Dev C# Júnior"
+telefone	string	Número de telefone de contato.	"77988887777"
+
+B. Objeto de Criação (UserCreationDto)
+
+Este é o formato esperado no corpo de uma requisição POST.
+Campo	Tipo	Descrição
+name	string	Nome do usuário.
+bio	string	Biografia.
+telefone	string	Telefone.
+
+C. Objeto de Atualização (UpdateDto)
+
+Este é o formato esperado no corpo de uma requisição PUT.
+Campo	Tipo	Descrição
+onde	int	Indica qual campo será atualizado: 1 para name, 2 para bio, 3 para telefone.
+novoValor	string	O novo valor a ser aplicado ao campo.
+
+3. Endpoints da API (Rotas)
+
+A documentação a seguir é baseada na rota base: /api/Users.
+Método	Endpoint	Descrição	Corpo da Requisição	Código de Retorno
+GET	/api/Users	Retorna uma lista de todos os usuários.	Nenhum	200 OK + List<UserResponseDto>
+GET	/api/Users/{id}	Retorna um único usuário pelo ID.	Nenhum	200 OK + UserResponseDto ou 404 Not Found
+POST	/api/Users	Cria um novo usuário.	UserCreationDto	201 Created
+PUT	/api/Users/{chave}	Atualiza um campo específico do usuário (Nome, Bio ou Telefone) pelo ID.	UpdateDto	204 No Content
+DELETE	/api/Users/{id}	Remove um usuário pelo ID.	Nenhum	204 No Content
+
+4. Implementação de Serviços (BancoDados.cs)
+
+O projeto utiliza uma arquitetura de Injeção de Dependência, onde a classe BancoDados é registrada como um scoped service.
+
+    O cliente Supabase é injetado no construtor de BancoDados, garantindo uma única instância e inicialização correta.
+
+    Os métodos de serviço (MostrarTodos, Inserir, etc.) são responsáveis por:
+
+        Fazer a comunicação assíncrona com o Supabase (await).
+
+        Mapear os modelos de banco (User) para os DTOs de resposta (UserResponseDto) antes de retornar ao Controller.
