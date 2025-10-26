@@ -53,7 +53,7 @@ namespace MeuProjetoApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("{userDto}")]
         public async Task<ActionResult> PostUser([FromBody] UserCreationDto userDto)
         {
             try
