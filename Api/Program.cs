@@ -22,18 +22,6 @@ builder.Services.AddScoped<BancoDados>();
 
 var app = builder.Build();
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
-
-app.UseCors();
-
 app.UseRouting();
 
 app.MapControllers();
