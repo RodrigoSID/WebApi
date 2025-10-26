@@ -32,6 +32,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+app.UseCors;
+
 app.UseRouting();
 
 app.MapControllers();
