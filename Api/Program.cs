@@ -32,7 +32,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-app.UseCors;
+app.UseCors();
 
 app.UseRouting();
 
