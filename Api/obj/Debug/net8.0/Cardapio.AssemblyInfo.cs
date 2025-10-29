@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cardapio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7050d7714c6e6b38137c30f5968d31f08a287ce4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34600a432ede6c8861ad354aefabfa6cafda804f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cardapio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cardapio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
